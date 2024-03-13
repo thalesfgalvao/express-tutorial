@@ -11,24 +11,24 @@ const usuarios = [];
 app.post('/usuarios', (req, res) => {
   const usuario = req.body;
   usuarios.push(usuario);
-  res.send(usuario);
+  res.status(201).send(usuario);
 });
 
 app.get('/usuarios', (req, res) => {
-  res.send(usuarios);
+  res.status(200).send(usuarios);
 });
 
 app.put('/usuarios/:id', (req, res) => {
   const index = usuarios.findIndex((user) => user.id === ~~req.params.id);
   const usuario = req.body;
   usuarios.splice(index, 1, usuario);
-  res.send(usuario);
+  res.status(200).send(usuario);
 });
 
 app.delete('/usuarios/:id', (req, res) => {
   const index = usuarios.findIndex((user) => user.id === ~~req.params.id);
   usuarios.splice(index, 1);
-  res.send({ mensagem: 'Usuário deletado com sucesso' });
+  res.status(204).send({ mensagem: 'Usuário deletado com sucesso' });
 });
 
 app.listen(port, () => {
