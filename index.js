@@ -18,11 +18,17 @@ app.get('/usuarios', (req, res) => {
   res.send(usuarios);
 });
 
-app.put('/usuarios', (req, res) => {
+app.put('/usuarios/:id', (req, res) => {
   const index = usuarios.findIndex((user) => user.id === ~~req.params.id);
   const usuario = req.body;
   usuarios.splice(index, 1, usuario);
   res.send(usuario);
+});
+
+app.delete('/usuarios/:id', (req, res) => {
+  const index = usuarios.findIndex((user) => user.id === ~~req.params.id);
+  usuarios.splice(index, 1);
+  res.send({ mensagem: 'Usuário deletado com sucesso' });
 });
 
 app.listen(port, () => {
