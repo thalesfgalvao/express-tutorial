@@ -18,6 +18,13 @@ app.get('/usuarios', (req, res) => {
   res.send(usuarios);
 });
 
+app.put('/usuarios', (req, res) => {
+  const index = usuarios.findIndex((user) => user.id === ~~req.params.id);
+  const usuario = req.body;
+  usuarios.splice(index, 1, usuario);
+  res.send(usuario);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
